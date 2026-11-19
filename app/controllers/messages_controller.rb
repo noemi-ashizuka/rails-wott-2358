@@ -22,6 +22,9 @@ class MessagesController < ApplicationController
   def create_assistant_message
     # create the chat
     rubyllm_chat = RubyLLM.chat(model: 'gpt-4.1')
+    # adding tools to the instance of ruby llm chat
+    rubyllm_chat.with_tools(WeatherTool, CreateChallengeTool)
+    # rubyllm_chat.with_tool(WeatherTool)
     # give it the previous history
     @chat.messages.each do |message|
       rubyllm_chat.add_message(role: message.role, content: message.content)
