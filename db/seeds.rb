@@ -1,4 +1,5 @@
 puts "Cleaning DB...."
+User.destroy_all
 Chat.destroy_all
 Challenge.destroy_all
 
